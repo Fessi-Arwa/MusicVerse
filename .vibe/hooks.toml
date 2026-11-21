@@ -1,57 +1,30 @@
 # Event logger: every hook event is appended as one JSON file to
 # events/<session_id>/NNN-<slug>.json by .vibe/hooks/log_event.py.
-# One row per event type supported by vibe 3.1.2. The script is generic
-# over hook_event_name, so future event types need no script changes —
-# just one more [[hooks]] row here.
+# Vibe 2.26.1 supports pre_tool, post_tool, and post_agent hooks.
+# The script is generic over hook_event_name, so additional event types
+# can be logged by adding a [[hooks]] row when the installed Vibe supports them.
 #
 # Hook commands run from the project root, so the script path is
 # relative and this template works from any clone location.
 
 [[hooks]]
-name = "log-event-session-start"
-type = "session_start"
-command = "python3 .vibe/hooks/log_event.py"
-timeout = 10.0
-description = "Append session_start events to events/<session_id>/NNN-<slug>.json"
-
-[[hooks]]
-name = "log-event-pre-agent"
-type = "pre_agent"
-command = "python3 .vibe/hooks/log_event.py"
-timeout = 10.0
-description = "Append pre_agent events to events/<session_id>/NNN-<slug>.json"
-
-[[hooks]]
 name = "log-event-pre-tool"
 type = "pre_tool"
-command = "python3 .vibe/hooks/log_event.py"
+command = "python .vibe/hooks/log_event.py"
 timeout = 10.0
 description = "Append pre_tool events to events/<session_id>/NNN-<slug>.json"
 
 [[hooks]]
 name = "log-event-post-tool"
 type = "post_tool"
-command = "python3 .vibe/hooks/log_event.py"
+command = "python .vibe/hooks/log_event.py"
 timeout = 10.0
 description = "Append post_tool events to events/<session_id>/NNN-<slug>.json"
 
 [[hooks]]
 name = "log-event-post-agent"
 type = "post_agent"
-command = "python3 .vibe/hooks/log_event.py"
+command = "python .vibe/hooks/log_event.py"
 timeout = 10.0
 description = "Append post_agent events to events/<session_id>/NNN-<slug>.json"
 
-[[hooks]]
-name = "log-event-notification"
-type = "notification"
-command = "python3 .vibe/hooks/log_event.py"
-timeout = 10.0
-description = "Append notification events to events/<session_id>/NNN-<slug>.json"
-
-[[hooks]]
-name = "log-event-session-end"
-type = "session_end"
-command = "python3 .vibe/hooks/log_event.py"
-timeout = 10.0
-description = "Append session_end events to events/<session_id>/NNN-<slug>.json"

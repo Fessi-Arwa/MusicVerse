@@ -23,7 +23,6 @@ diagnostics go to stderr only.
 
 from __future__ import annotations
 
-import fcntl
 import json
 import os
 import re
@@ -130,6 +129,35 @@ def _next_seq(session_dir: Path) -> int:
     return highest + 1
 
 
+def _lock_file(lock) -> None:
+    """Lock one byte on Windows, or the whole file on Unix."""
+    if os.name == "nt":
+        import msvcrt
+
+        lock.seek(0, os.SEEK_END)
+        if lock.tell() == 0:
+            lock.write(b"\0")
+            lock.flush()
+        lock.seek(0)
+        msvcrt.locking(lock.fileno(), msvcrt.LK_LOCK, 1)
+    else:
+        import fcntl
+
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+
+
+def _unlock_file(lock) -> None:
+    if os.name == "nt":
+        import msvcrt
+
+        lock.seek(0)
+        msvcrt.locking(lock.fileno(), msvcrt.LK_UNLCK, 1)
+    else:
+        import fcntl
+
+        fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+
+
 def _log(payload: object) -> None:
     if not isinstance(payload, dict):
         payload = {"value": payload}
@@ -137,8 +165,8 @@ def _log(payload: object) -> None:
     session_dir = _session_dir(payload)
     # Tool calls in one turn fire hook chains concurrently, so the
     # read-max-plus-one/write sequence must be serialized per session.
-    with open(session_dir / LOCK_FILENAME, "a+", encoding="utf-8") as lock:
-        fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+    with open(session_dir / LOCK_FILENAME, "a+b") as lock:
+        _lock_file(lock)
         try:
             seq = _next_seq(session_dir)
             record = {
@@ -162,7 +190,7 @@ def _log(payload: object) -> None:
                     pass
                 raise
         finally:
-            fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
+            _unlock_file(lock)
 
 
 def main() -> int:
