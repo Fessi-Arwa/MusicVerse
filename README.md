@@ -1,21 +1,53 @@
-L’objectif est de choisir un projet d’implémentation de votre choix (petite application, petit jeu, …) a faire en groupe (2, ou 3). Ce projet doit être:
+# MusicVerse — Your Personal Music Universe
 
-- **Petit, mais non trivial**. Ce ne doit pas être quelque chose de faisable en une poignée de prompts (vous avez 2 semaines pour le faire). L’idée est d’avoir un retour d’expérience avec un projet qui commence à passer à l’échelle. Disons au moins une vingtaine de fichiers de code et une cinquantaine de commits (ça peut paraître gros! mais vous allez voir, ça passe très vite).
-- **Visible sur Git**. Pour pouvoir jeter un oeil sur le code et le développement, le code doit être visible (pour moi, vous pouvez le garder privé), ainsi que des informations basiques de développement. Pour ce faire, j’ai crée un “hook” (comme présenté en classe par Tristan!)  qui devrait se charger automatiquement sur Vibe (testé avec 3.1.2). Le hook ne fait qu’enregistrer des informations. On pourra s’en servir pour analyser des données de développement. Vous devez commencer par forker le repo template: https://github.com/rrobbes/mini-project-template/ , quand vous lancez l’agent dans le repo 
-- **Utilisable par un agent**. Un petit côté experimental: votre application doit être au moins partiellement (c’est pas forcément évident pour toutes les scénarios) utilisable par un agent. Ça peut être soit par une interface en ligne de commande (en parallèle à une interface web/graphique), soit par un serveur MCP. Si vous avez des difficultés à imaginer quoi faire dans votre cas, envoyez-moi un mail et on en parle. Si vous voulez, vous pouvez même faire un “skill” (comme présenté en classe par Paul!) afin d’enseigner à votre agent comment utiliser l’application.
-- **Utilisez Vibe**. Certains d’entre vous utilisent Claude, Codex, … le hook ne marchera pas avec ces agents.
+MusicVerse est une application personnelle pour découvrir, organiser et mieux comprendre sa bibliothèque musicale. Elle réunit les chansons, les playlists, les favoris, les souvenirs associés à la musique et des statistiques sur ses goûts.
 
-Dans le cas ou vous avez déjà commencé dans la demi-heure, je pense que ça ne vous prendra pas trop de temps de “recommencer” avec le template du repo.  
+## Objectif du projet
 
-Timeline:
-- D’ici **mercredi 18** maximum: 
-	- un membre du groupe doit forker le projet (clicker sur un bouton): https://github.com/rrobbes/mini-project-template/ 
-	- inviter votre binôme.
-	- m’inviter en tant que membre du projet (rrobbes sur GitHub). 
-	- lancer Vibe une fois dans le repo, “truster” la configuration, et vérifier que des événements s’enregistrent dans le dossier events. 
-- D'ici **vendredi 20**: 
-	- faire au moins un premier commit d’un README.md avec un plan initial du projet. 
-	- m’envoyer un mail si vous avez des difficultés à envisager comment faire que votre application soit utilisable par un agent.
-- Jusqu’a **lundi 30**:
-  - travail sur le mini-projet.
-  - ajouter un fichier "report.md" ou vous faîtes une (brève) réflexion sur votre processus de travail, les facilités, les difficultés.
+Créer une petite application non triviale, utilisable par une personne et par un agent IA. L’agent pourra consulter la bibliothèque et proposer ou réaliser des actions musicales à partir des données de l’utilisateur.
+
+## Fonctionnalités envisagées
+
+- **Bibliothèque** : enregistrer des chansons avec leur titre, artiste, album, genres et humeur.
+- **Recherche et filtres** : retrouver des chansons par titre, artiste, album, genre ou humeur.
+- **Playlists** : créer et modifier des playlists personnalisées.
+- **Favoris** : marquer et retrouver facilement ses chansons préférées.
+- **Journal musical** : associer une chanson à un souvenir ou à une émotion.
+- **Statistiques** : présenter les artistes et genres les plus présents dans la bibliothèque, ainsi que l’évolution des goûts.
+
+## Utilisation par un agent IA
+
+Une interface en ligne de commande donnera à l’agent accès aux mêmes opérations que l’application. L’agent pourra notamment :
+
+- rechercher les chansons d’un artiste et filtrer la bibliothèque ;
+- composer une playlist selon une humeur ;
+- suggérer des chansons similaires à partir des artistes, genres et humeurs renseignés ;
+- résumer les préférences musicales ;
+- proposer de réorganiser une playlist selon un critère choisi.
+
+Les suggestions s’appuieront d’abord sur les métadonnées de la bibliothèque, sans modèle de recommandation externe.
+
+## Première version envisagée
+
+Le périmètre initial est une bibliothèque locale avec des métadonnées saisies ou importées par l’utilisateur. La première version visera la gestion des chansons, des favoris et des playlists, la recherche, puis quelques statistiques simples. L’interface et la persistance seront choisies pendant la conception, en privilégiant une structure de données partagée entre l’application et la CLI.
+
+L’écoute ou le téléchargement de musique, l’intégration à un service de streaming et le partage social ne font pas partie du périmètre initial.
+
+## Plan de travail initial
+
+1. Définir les données d’une chanson, d’une playlist et d’une entrée du journal musical.
+2. Choisir l’interface et le stockage, puis préparer la structure du projet.
+3. Implémenter la bibliothèque, la recherche, les favoris et les playlists.
+4. Ajouter le journal musical et les premières statistiques.
+5. Exposer les opérations principales dans la CLI pour l’agent.
+6. Intégrer et documenter le parcours utilisateur, puis rédiger `report.md` sur le processus de développement.
+
+Ce plan est une première proposition ; le périmètre et les choix techniques seront ajustés au fil du travail de l’équipe.
+
+## Contraintes du mini-projet
+
+- Projet réalisé en groupe de deux ou trois personnes.
+- Code et développement suivis dans Git.
+- Application au moins partiellement utilisable par un agent.
+- Utilisation de Mistral Vibe et conservation des événements enregistrés dans `events/`.
+- Cible indicative du cours : un projet assez conséquent pour commencer à passer à l’échelle (environ vingt fichiers de code et cinquante commits).
