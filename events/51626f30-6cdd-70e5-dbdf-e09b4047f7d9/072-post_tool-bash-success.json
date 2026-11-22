@@ -1,0 +1,32 @@
+{
+  "seq": 72,
+  "received_at": "2026-11-22T21:35:26.816107+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "3yVdmaPOQ",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -c \"from musicverse.core.services import search_songs, find_similar_songs, create_playlist_by_mood, get_statistics; print('Search Electro:', [s.titre for s in search_songs('Electro')]); print('Similar to 123:', [s.titre for s in find_similar_songs(123, limit=3)]); print('Stats:', get_statistics())\""
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -c \"from musicverse.core.services import search_songs, find_similar_songs, create_playlist_by_mood, get_statistics; print('Search Electro:', [s.titre for s in search_songs('Electro')]); print('Similar to 123:', [s.titre for s in find_similar_songs(123, limit=3)]); print('Stats:', get_statistics())\"",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "Search Electro: ['Around the World', 'One More Time', 'Harder, Better, Faster, Stronger', 'Something About Us', 'Digital Love']\r",
+        "Similar to 123: ['Blinding Lights', 'Levitating', 'One More Time']\r",
+        "Stats: {'top_artistes': [{'artiste': 'Daft Punk', 'count': 5}, {'artiste': 'Coldplay', 'count': 4}, {'artiste': 'Queen', 'count': 3}], 'top_genres': [{'genre': 'Pop', 'count': 8}, {'genre': 'Rock', 'count': 7}, {'genre': 'Electro', 'count': 5}], 'most_listened': {'titre': 'Blinding Lights', 'artiste': 'The Weeknd', 'ecoutes': 95}}\r",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

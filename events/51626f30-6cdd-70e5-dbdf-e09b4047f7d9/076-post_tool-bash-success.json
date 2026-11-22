@@ -1,0 +1,36 @@
+{
+  "seq": 76,
+  "received_at": "2026-11-22T21:35:47.621625+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "5j3H8viwC",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -c \"from musicverse.core.services import create_playlist_by_mood, toggle_favorite, simulate_listens, get_statistics; from musicverse.core.repository import get_song_by_id; playlist = create_playlist_by_mood('Énergique', 'Énergique'); print(f'Playlist Énergique créée (ID: {playlist.id})'); toggle_favorite(123); print(f'Song 123 favorite: {get_song_by_id(123).is_favorite}'); simulate_listens(123, 5); print('Stats après simulation:', get_statistics())\""
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -c \"from musicverse.core.services import create_playlist_by_mood, toggle_favorite, simulate_listens, get_statistics; from musicverse.core.repository import get_song_by_id; playlist = create_playlist_by_mood('Énergique', 'Énergique'); print(f'Playlist Énergique créée (ID: {playlist.id})'); toggle_favorite(123); print(f'Song 123 favorite: {get_song_by_id(123).is_favorite}'); simulate_listens(123, 5); print('Stats après simulation:', get_statistics())\"",
+      "returncode": 1,
+      "stderr": [
+        "Traceback (most recent call last):\r",
+        "  File \"<string>\", line 1, in <module>\r",
+        "  File \"C:\\Users\\MSI\\MusicVerse\\musicverse\\core\\services.py\", line 94, in create_playlist_by_mood\r",
+        "    playlist = create_playlist(name)\r",
+        "  File \"C:\\Users\\MSI\\MusicVerse\\musicverse\\core\\repository.py\", line 136, in create_playlist\r",
+        "    cursor.execute(\"INSERT INTO playlists (nom) VALUES (?)\", (name,))\r",
+        "sqlite3.IntegrityError: UNIQUE constraint failed: playlists.nom\r",
+        ""
+      ],
+      "stdout": "",
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}
