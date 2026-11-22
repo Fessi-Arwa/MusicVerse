@@ -1,0 +1,12 @@
+{
+  "seq": 13,
+  "received_at": "2026-11-22T20:43:13.839075+00:00",
+  "hook_event_name": "post_agent",
+  "event": {
+    "session_id": "51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_agent"
+  }
+}
