@@ -258,28 +258,42 @@ def get_songs_by_mood(mood: str) -> List[Song]:
 
 
 def get_stats() -> dict:
-    """Get statistics: top 3 artistes, top 3 genres, most listened song."""
+    """Get statistics: top 3 artistes, top 3 genres, most listened song.
+    
+    Artists and genres are ranked by total écoutes (SUM), with stable ordering
+    (alphabetical) in case of ties.
+    """
     with get_db_connection() as conn:
         cursor = conn.cursor()
         
-        # Top 3 artistes (par nombre de chansons)
+        # Top 3 artistes (par total d'écoutes)
         cursor.execute("""
-            SELECT artiste, COUNT(*) as count FROM songs
-            GROUP BY artiste ORDER BY count DESC LIMIT 3
+            SELECT artiste, SUM(ecoutes) as total_ecoutes
+            FROM songs
+            GROUP BY artiste
+            ORDER BY total_ecoutes DESC, artiste ASC
+            LIMIT 3
         """)
-        top_artistes = [{"artiste": row["artiste"], "count": row["count"]} for row in cursor.fetchall()]
+        top_artistes = [{"artiste": row["artiste"], "total_ecoutes": row["total_ecoutes"]}
+                        for row in cursor.fetchall()]
         
-        # Top 3 genres (par nombre de chansons)
+        # Top 3 genres (par total d'écoutes)
         cursor.execute("""
-            SELECT genre, COUNT(*) as count FROM songs
-            GROUP BY genre ORDER BY count DESC LIMIT 3
+            SELECT genre, SUM(ecoutes) as total_ecoutes
+            FROM songs
+            GROUP BY genre
+            ORDER BY total_ecoutes DESC, genre ASC
+            LIMIT 3
         """)
-        top_genres = [{"genre": row["genre"], "count": row["count"]} for row in cursor.fetchall()]
+        top_genres = [{"genre": row["genre"], "total_ecoutes": row["total_ecoutes"]}
+                      for row in cursor.fetchall()]
         
         # Chanson la plus écoutée
         cursor.execute("""
-            SELECT titre, artiste, ecoutes FROM songs
-            ORDER BY ecoutes DESC LIMIT 1
+            SELECT titre, artiste, ecoutes
+            FROM songs
+            ORDER BY ecoutes DESC, titre ASC
+            LIMIT 1
         """)
         top_song = cursor.fetchone()
         most_listened = {

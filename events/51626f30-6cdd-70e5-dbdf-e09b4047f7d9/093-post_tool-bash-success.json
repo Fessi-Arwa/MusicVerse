@@ -1,0 +1,33 @@
+{
+  "seq": 93,
+  "received_at": "2026-11-22T21:43:57.974005+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "PGLIdbbdE",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -m musicverse.cli create-playlist --name \"Déprime\" --mood \"Triste\""
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -m musicverse.cli create-playlist --name \"Déprime\" --mood \"Triste\"",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "{\r",
+        "  \"playlist_id\": 3,\r",
+        "  \"nom\": \"D�prime\"\r",
+        "}\r",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

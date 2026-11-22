@@ -1,0 +1,44 @@
+{
+  "seq": 99,
+  "received_at": "2026-11-22T21:44:16.487698+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "PzcAGGHiG",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -m musicverse.cli list --favorites"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -m musicverse.cli list --favorites",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "[\r",
+        "  {\r",
+        "    \"id\": 123,\r",
+        "    \"titre\": \"Physical\",\r",
+        "    \"artiste\": \"Dua Lipa\",\r",
+        "    \"album\": \"Future Nostalgia\",\r",
+        "    \"duree\": 194,\r",
+        "    \"annee\": 2020,\r",
+        "    \"genre\": \"Pop\",\r",
+        "    \"humeur\": \"�nergique\",\r",
+        "    \"is_favorite\": true,\r",
+        "    \"ecoutes\": 40,\r",
+        "    \"derniere_ecoute\": \"2026-11-22\"\r",
+        "  }\r",
+        "]\r",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "seq": 125,
+  "received_at": "2026-11-22T21:56:21.468565+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\51626f30-6cdd-70e5-dbdf-e09b4047f7d9",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "e6Tui8lyl",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && git ls-files | grep -E \"\\.pyc|__pycache__\""
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && git ls-files | grep -E \"\\.pyc|__pycache__\"",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": "",
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

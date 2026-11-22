@@ -1,2 +1,6 @@
 .DS_Store
 musicverse.db
+
+# Python
+__pycache__/
+*.py[cod]

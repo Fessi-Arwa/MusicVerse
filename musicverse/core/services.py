@@ -155,8 +155,8 @@ def get_statistics() -> dict:
     
     Returns:
         Dictionary with:
-        - top_artistes: List of top 3 artistes by song count
-        - top_genres: List of top 3 genres by song count
+        - top_artistes: List of top 3 artistes by total écoutes (SUM)
+        - top_genres: List of top 3 genres by total écoutes (SUM)
         - most_listened: Most listened song (titre, artiste, écoutes)
     """
     return get_stats()
