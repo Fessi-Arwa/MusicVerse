@@ -1,0 +1,17 @@
+{
+  "seq": 57,
+  "received_at": "2026-11-23T14:07:47.422016+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "6kYi90AhJ",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && pip install -e . 2>&1 | tail -20"
+    }
+  }
+}

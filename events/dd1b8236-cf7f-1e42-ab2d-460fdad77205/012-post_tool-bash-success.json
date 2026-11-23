@@ -1,0 +1,30 @@
+{
+  "seq": 12,
+  "received_at": "2026-11-23T14:05:20.159915+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "o2Y9KHgHD",
+    "tool_input": {
+      "command": "cd /d C:\\Users\\MSI\\MusicVerse && dir /s /b *.py 2>&1 | head -50"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /d C:\\Users\\MSI\\MusicVerse && dir /s /b *.py 2>&1 | head -50",
+      "returncode": 1,
+      "stderr": [
+        "/usr/bin/bash: line 1: cd: too many arguments",
+        ""
+      ],
+      "stdout": "",
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

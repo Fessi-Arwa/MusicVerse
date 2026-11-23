@@ -139,6 +139,27 @@ def create_playlist(name: str) -> Playlist:
         return Playlist(id=playlist_id, nom=name)
 
 
+def get_all_playlists() -> List[Playlist]:
+    """Get all playlists from the database."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM playlists ORDER BY nom")
+        rows = cursor.fetchall()
+        return [
+            Playlist(id=row["id"], nom=row["nom"])
+            for row in rows
+        ]
+
+
+def get_unique_moods() -> List[str]:
+    """Get all unique humeurs from the songs database."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT DISTINCT humeur FROM songs ORDER BY humeur")
+        rows = cursor.fetchall()
+        return [row["humeur"] for row in rows]
+
+
 def get_playlist_by_id(playlist_id: int) -> Optional[Playlist]:
     """Get a playlist by its ID. Returns None if not found."""
     with get_db_connection() as conn:

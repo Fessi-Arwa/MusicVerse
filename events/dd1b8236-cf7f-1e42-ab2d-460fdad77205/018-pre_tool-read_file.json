@@ -1,0 +1,17 @@
+{
+  "seq": 18,
+  "received_at": "2026-11-23T14:05:28.724484+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.read_file",
+    "tool_call_id": "8LHyqqqe8",
+    "tool_input": {
+      "file_path": "MusicVerse/core/models.py"
+    }
+  }
+}

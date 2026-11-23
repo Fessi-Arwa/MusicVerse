@@ -1,0 +1,33 @@
+{
+  "seq": 58,
+  "received_at": "2026-11-23T14:09:42.002290+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "6kYi90AhJ",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && pip install -e . 2>&1 | tail -20"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && pip install -e . 2>&1 | tail -20",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "Obtaining file:///C:/Users/MSI/MusicVerse\r",
+        "ERROR: file:///C:/Users/MSI/MusicVerse does not appear to be a Python project: neither 'setup.py' nor 'pyproject.toml' found.\r",
+        "WARNING: You are using pip version 22.0.4; however, version 26.3 is available.\r",
+        "You should consider upgrading via the 'C:\\Users\\MSI\\AppData\\Local\\Programs\\Python\\Python310\\python.exe -m pip install --upgrade pip' command.\r",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

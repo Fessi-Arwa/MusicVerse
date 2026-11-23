@@ -1,0 +1,33 @@
+{
+  "seq": 74,
+  "received_at": "2026-11-23T14:15:50.515032+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "YrnMrAFUP",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && ls -la musicverse/app/static/css/"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && ls -la musicverse/app/static/css/",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "total 8",
+        "drwxr-xr-x 1 MSI 197121    0 Nov 23 15:06 .",
+        "drwxr-xr-x 1 MSI 197121    0 Nov 23 15:05 ..",
+        "-rw-r--r-- 1 MSI 197121 6471 Nov 23 15:06 library.css",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

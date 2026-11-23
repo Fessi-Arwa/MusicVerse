@@ -1,0 +1,17 @@
+{
+  "seq": 67,
+  "received_at": "2026-11-23T14:14:16.022346+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "VraWDmj82",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && PYTHONPATH=/c/Users/MSI/MusicVerse python -c \"from musicverse.app import create_app; app = create_app(); print('App created successfully'); print('Blueprints:', [bp.name for bp in app.blueprints.values()]); print('Routes:', [str(rule) for rule in app.url_map.iter_rules()])\" 2>&1"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09070d">
+    <title>MusicVerse — Playlists</title>
+    <link rel="stylesheet" href="{{ url_for('library.static', filename='css/library.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a href="{{ url_for('library.library') }}" class="brand" aria-label="MusicVerse, accueil">
+                <span class="brand-mark" aria-hidden="true">♫</span>
+                <span class="brand-name">Music<span>Verse</span></span>
+            </a>
+            <nav class="nav" aria-label="Navigation principale">
+                <a href="{{ url_for('library.library') }}" class="nav-link">Bibliothèque</a>
+                <a href="{{ url_for('playlists.list_playlists') }}" class="nav-link active">Playlists</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> Curated by your mood</p>
+                <h1 class="hero-title">Des playlists à <span class="gradient-text">ton image.</span></h1>
+                <p class="hero-description">Compose une ambiance en un instant et retrouve ici tes collections préférées.</p>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <span class="orb"></span>
+                <span class="equalizer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+        </section>
+
+        <div class="playlist-layout">
+            <section class="surface-card create-card">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> Instant mix</p>
+                <h2>Créer une ambiance</h2>
+                <p>Choisis une humeur, MusicVerse rassemble les morceaux qui lui correspondent.</p>
+                {% if error %}<div class="notice" role="alert">{{ error }}</div>{% endif %}
+                <form action="{{ url_for('playlists.create_playlist') }}" method="post">
+                    <div class="form-field">
+                        <label for="playlist-name">Nom de la playlist</label>
+                        <input id="playlist-name" type="text" name="name" class="search-input" placeholder="Ex. Nuit mauve" required maxlength="80">
+                    </div>
+                    <div class="form-field">
+                        <label for="playlist-mood">Humeur</label>
+                        <select id="playlist-mood" name="mood" class="select-input" required>
+                            <option value="" disabled selected>Choisir une humeur</option>
+                            {% for mood in moods %}
+                            <option value="{{ mood }}">{{ mood }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="primary-button"><span class="button-icon">＋</span> Créer la playlist</button>
+                </form>
+            </section>
+
+            <section>
+                <div class="section-heading" style="margin: 0 0 16px;">
+                    <div>
+                        <h2 class="section-title">Tes collections</h2>
+                        <p class="section-subtitle">{{ playlists|length }} playlist(s) dans ton univers</p>
+                    </div>
+                </div>
+                {% if playlists %}
+                <div class="playlist-grid">
+                    {% for playlist in playlists %}
+                    <a class="playlist-card" href="{{ url_for('playlists.view_playlist', playlist_id=playlist.id) }}" style="animation-delay: {{ loop.index0 * 55 }}ms;">
+                        <div class="playlist-info">
+                            <h3>{{ playlist.nom }}</h3>
+                            <span>{{ playlist.song_count }} morceau(x)</span>
+                        </div>
+                        <span class="playlist-arrow" aria-hidden="true">↗</span>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="surface-card empty-state">
+                    <div><span class="empty-icon">✦</span><strong>Ton premier mix t’attend</strong><br><span>Choisis une humeur pour composer ta première playlist.</span></div>
+                </div>
+                {% endif %}
+            </section>
+        </div>
+        <p class="footer-note">Une humeur, une ambiance, ton MusicVerse.</p>
+    </main>
+</body>
+</html>

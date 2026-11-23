@@ -1,0 +1,36 @@
+{
+  "seq": 56,
+  "received_at": "2026-11-23T14:07:43.032067+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "pRIdKfzX9",
+    "tool_input": {
+      "command": "cd musicverse && python -c \"from app.routes import library_bp; print('Import successful')\" 2>&1"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd musicverse && python -c \"from app.routes import library_bp; print('Import successful')\" 2>&1",
+      "returncode": 1,
+      "stderr": "",
+      "stdout": [
+        "Traceback (most recent call last):\r",
+        "  File \"<string>\", line 1, in <module>\r",
+        "  File \"C:\\Users\\MSI\\MusicVerse\\musicverse\\app\\__init__.py\", line 2, in <module>\r",
+        "    from .routes import library_bp\r",
+        "  File \"C:\\Users\\MSI\\MusicVerse\\musicverse\\app\\routes.py\", line 6, in <module>\r",
+        "    from musicverse.core.services import (\r",
+        "ModuleNotFoundError: No module named 'musicverse'\r",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

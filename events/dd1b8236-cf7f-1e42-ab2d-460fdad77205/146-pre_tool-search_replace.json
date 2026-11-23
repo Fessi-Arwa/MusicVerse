@@ -1,0 +1,53 @@
+{
+  "seq": 146,
+  "received_at": "2026-11-23T14:31:44.977596+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "TkVynYA8d",
+    "tool_input": {
+      "file_path": "musicverse/core/services.py",
+      "old_string": [
+        "from .repository import (",
+        "    get_all_songs as repo_get_all_songs,",
+        "    get_song_by_id,",
+        "    search_songs as repo_search_songs,",
+        "    get_favorite_songs,",
+        "    toggle_favorite as repo_toggle_favorite,",
+        "    create_playlist,",
+        "    get_playlist_by_id,",
+        "    get_playlist_songs,",
+        "    get_all_playlists,",
+        "    add_song_to_playlist,",
+        "    update_song_ecoutes,",
+        "    get_songs_by_mood,",
+        "    get_stats,",
+        ")"
+      ],
+      "new_string": [
+        "from .repository import (",
+        "    get_all_songs as repo_get_all_songs,",
+        "    get_song_by_id,",
+        "    search_songs as repo_search_songs,",
+        "    get_favorite_songs,",
+        "    toggle_favorite as repo_toggle_favorite,",
+        "    create_playlist,",
+        "    get_playlist_by_id,",
+        "    get_playlist_songs,",
+        "    get_all_playlists,",
+        "    get_unique_moods,",
+        "    add_song_to_playlist,",
+        "    update_song_ecoutes,",
+        "    get_songs_by_mood,",
+        "    get_stats,",
+        ")"
+      ],
+      "replace_all": false
+    }
+  }
+}

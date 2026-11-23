@@ -1,0 +1,38 @@
+{
+  "seq": 141,
+  "received_at": "2026-11-23T14:31:33.051089+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "YHuoINbjN",
+    "tool_input": {
+      "file_path": "musicverse/app/templates/library.html",
+      "old_string": [
+        "            <nav class=\"nav\">",
+        "                <a href=\"{{ url_for('library.library') }}\" class=\"nav-link active\">Bibliothèque</a>",
+        "                <a href=\"#\" class=\"nav-link\">Playlists</a>",
+        "            </nav>"
+      ],
+      "new_string": [
+        "            <nav class=\"nav\">",
+        "                <a href=\"{{ url_for('library.library') }}\" class=\"nav-link active\">Bibliothèque</a>",
+        "                <a href=\"{{ url_for('playlists.list_playlists') }}\" class=\"nav-link\">Playlists</a>",
+        "            </nav>"
+      ],
+      "replace_all": false
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "file": "C:\\Users\\MSI\\MusicVerse\\musicverse\\app\\templates\\library.html",
+      "lines_changed": 4,
+      "warnings": []
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

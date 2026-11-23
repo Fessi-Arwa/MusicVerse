@@ -1,0 +1,51 @@
+{
+  "seq": 144,
+  "received_at": "2026-11-23T14:31:41.309785+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "uHEpr609q",
+    "tool_input": {
+      "file_path": "musicverse/core/repository.py",
+      "old_string": [
+        "def get_all_playlists() -> List[Playlist]:",
+        "    \"\"\"Get all playlists from the database.\"\"\"",
+        "    with get_db_connection() as conn:",
+        "        cursor = conn.cursor()",
+        "        cursor.execute(\"SELECT * FROM playlists ORDER BY nom\")",
+        "        rows = cursor.fetchall()",
+        "        return [",
+        "            Playlist(id=row[\"id\"], nom=row[\"nom\"])",
+        "            for row in rows",
+        "        ]"
+      ],
+      "new_string": [
+        "def get_all_playlists() -> List[Playlist]:",
+        "    \"\"\"Get all playlists from the database.\"\"\"",
+        "    with get_db_connection() as conn:",
+        "        cursor = conn.cursor()",
+        "        cursor.execute(\"SELECT * FROM playlists ORDER BY nom\")",
+        "        rows = cursor.fetchall()",
+        "        return [",
+        "            Playlist(id=row[\"id\"], nom=row[\"nom\"])",
+        "            for row in rows",
+        "        ]",
+        "",
+        "",
+        "def get_unique_moods() -> List[str]:",
+        "    \"\"\"Get all unique humeurs from the songs database.\"\"\"",
+        "    with get_db_connection() as conn:",
+        "        cursor = conn.cursor()",
+        "        cursor.execute(\"SELECT DISTINCT humeur FROM songs ORDER BY humeur\")",
+        "        rows = cursor.fetchall()",
+        "        return [row[\"humeur\"] for row in rows]"
+      ],
+      "replace_all": false
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "seq": 98,
+  "received_at": "2026-11-23T14:27:24.491098+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "lT0wYTlas",
+    "tool_input": {
+      "command": "grep -n \"def get_\" musicverse/core/repository.py | grep -i playlist"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "grep -n \"def get_\" musicverse/core/repository.py | grep -i playlist",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "142:def get_playlist_by_id(playlist_id: int) -> Optional[Playlist]:",
+        "153:def get_playlist_songs(playlist_id: int) -> List[Song]:",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "seq": 61,
+  "received_at": "2026-11-23T14:10:01.737137+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "h3wTZEzRf",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && python -c \"import sys; sys.path.insert(0, '.'); from musicverse.app.routes import library_bp; print('Import successful')\" 2>&1"
+    }
+  }
+}

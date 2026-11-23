@@ -1,0 +1,42 @@
+{
+  "seq": 60,
+  "received_at": "2026-11-23T14:09:55.908380+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "1H7KkBFzF",
+    "tool_input": {
+      "command": "ls -la /c/Users/MSI/MusicVerse/"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "ls -la /c/Users/MSI/MusicVerse/",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "total 378",
+        "drwxr-xr-x 1 MSI 197121     0 Nov 22 22:48 .",
+        "drwxr-xr-x 1 MSI 197121     0 Nov 21 20:28 ..",
+        "drwxr-xr-x 1 MSI 197121     0 Nov 21 20:29 .dist",
+        "drwxr-xr-x 1 MSI 197121     0 Nov 23 14:30 .git",
+        "-rw-r--r-- 1 MSI 197121    58 Nov 22 22:48 .gitignore",
+        "drwxr-xr-x 1 MSI 197121     0 Nov 21 20:28 .vibe",
+        "-rw-r--r-- 1 MSI 197121  1177 Nov 21 20:28 AGENTS.md",
+        "-rw-r--r-- 1 MSI 197121  4787 Nov 22 21:45 README.md",
+        "drwxr-xr-x 1 MSI 197121     0 Nov 23 15:04 events",
+        "drwxr-xr-x 1 MSI 197121     0 Nov 22 22:34 musicverse",
+        "-rw-r--r-- 1 MSI 197121 28672 Nov 22 22:44 musicverse.db",
+        "-rw-r--r-- 1 MSI 197121     6 Nov 22 22:29 requirements.txt",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

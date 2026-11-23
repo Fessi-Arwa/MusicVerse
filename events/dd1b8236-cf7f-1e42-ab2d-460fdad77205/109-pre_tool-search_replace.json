@@ -1,0 +1,47 @@
+{
+  "seq": 109,
+  "received_at": "2026-11-23T14:27:43.994833+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "2PoQ8SB4X",
+    "tool_input": {
+      "file_path": "musicverse/core/services.py",
+      "old_string": [
+        "def get_statistics() -> dict:",
+        "    \"\"\"Get library statistics.",
+        "    ",
+        "    Returns:",
+        "        Dictionary with:",
+        "        - top_artistes: List of top 3 artistes by total écoutes (SUM)",
+        "        - top_genres: List of top 3 genres by total écoutes (SUM)",
+        "        - most_listened: Most listened song (titre, artiste, écoutes)",
+        "    \"\"\"",
+        "    return get_stats()"
+      ],
+      "new_string": [
+        "def get_all_playlists_service() -> List[Playlist]:",
+        "    \"\"\"Get all playlists.\"\"\"",
+        "    return get_all_playlists()",
+        "",
+        "",
+        "def get_statistics() -> dict:",
+        "    \"\"\"Get library statistics.",
+        "    ",
+        "    Returns:",
+        "        Dictionary with:",
+        "        - top_artistes: List of top 3 artistes by total écoutes (SUM)",
+        "        - top_genres: List of top 3 genres by total écoutes (SUM)",
+        "        - most_listened: Most listened song (titre, artiste, écoutes)",
+        "    \"\"\"",
+        "    return get_stats()"
+      ],
+      "replace_all": false
+    }
+  }
+}

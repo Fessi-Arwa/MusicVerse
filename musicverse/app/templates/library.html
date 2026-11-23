@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09070d">
+    <title>MusicVerse — Bibliothèque</title>
+    <link rel="stylesheet" href="{{ url_for('library.static', filename='css/library.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a href="{{ url_for('library.library') }}" class="brand" aria-label="MusicVerse, accueil">
+                <span class="brand-mark" aria-hidden="true">♫</span>
+                <span class="brand-name">Music<span>Verse</span></span>
+            </a>
+            <nav class="nav" aria-label="Navigation principale">
+                <a href="{{ url_for('library.library') }}" class="nav-link active">Bibliothèque</a>
+                <a href="{{ url_for('playlists.list_playlists') }}" class="nav-link">Playlists</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <section class="hero-panel">
+            <div class="hero-copy">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> Your personal music universe</p>
+                <h1 class="hero-title">Redécouvre <span class="gradient-text">ton univers.</span></h1>
+                <p class="hero-description">Toutes tes chansons, tes humeurs et tes favoris réunis dans un espace qui t’appartient.</p>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <span class="orb"></span>
+                <span class="equalizer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+        </section>
+
+        <section class="section-heading">
+            <div>
+                <h2 class="section-title">Ta bibliothèque</h2>
+                <p class="section-subtitle">Un petit espace pour les morceaux qui te ressemblent.</p>
+            </div>
+            <div class="result-count"><strong>{{ songs|length }}</strong> titre(s) affiché(s)</div>
+        </section>
+
+        <div class="search-row">
+            <form action="{{ url_for('library.library') }}" method="get" class="search-form" role="search">
+                <div class="search-wrap">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path>
+                    </svg>
+                    <input type="search" name="q" value="{{ query }}" placeholder="Chercher un titre, un artiste, une humeur…" class="search-input" autocomplete="off">
+                </div>
+                <button type="submit" class="primary-button">Explorer</button>
+            </form>
+            {% if query %}
+            <a href="{{ url_for('library.library') }}" class="secondary-button">Effacer</a>
+            {% endif %}
+        </div>
+
+        {% if query %}
+        <p class="section-subtitle" style="margin: 0 0 14px;">Résultats pour « {{ query }} »</p>
+        {% endif %}
+
+        <section class="surface-card" aria-label="Chansons de la bibliothèque">
+            {% if songs %}
+            <div class="table-scroll">
+                <table class="song-table">
+                    <thead>
+                        <tr>
+                            <th class="favorite-cell"><span class="sr-only">Favori</span>♡</th>
+                            <th>Titre</th>
+                            <th>Artiste</th>
+                            <th>Album</th>
+                            <th>Genre</th>
+                            <th>Humeur</th>
+                            <th>Durée</th>
+                            <th class="listens-cell">Écoutes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for song in songs %}
+                        <tr data-song-id="{{ song.id }}">
+                            <td class="favorite-cell">
+                                <button type="button" class="favorite-button {% if song.is_favorite %}favorite{% endif %}" data-song-id="{{ song.id }}" aria-pressed="{{ 'true' if song.is_favorite else 'false' }}" aria-label="{% if song.is_favorite %}Retirer {{ song.titre }} des favoris{% else %}Ajouter {{ song.titre }} aux favoris{% endif %}" title="Basculer le favori">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35 10.55 20C5.4 15.36 2 12.28 2 8.5A5.5 5.5 0 0 1 7.5 3c1.74 0 3.41.81 4.5 2.09A5.99 5.99 0 0 1 16.5 3 5.5 5.5 0 0 1 22 8.5c0 3.78-3.4 6.86-8.55 11.51L12 21.35Z"/></svg>
+                                </button>
+                            </td>
+                            <td class="song-title">{{ song.titre }}</td>
+                            <td class="song-artist">{{ song.artiste }}</td>
+                            <td class="song-album">{{ song.album or '—' }}</td>
+                            <td><span class="mood-chip">{{ song.genre }}</span></td>
+                            <td><span class="mood-chip">{{ song.humeur }}</span></td>
+                            <td class="duration-cell">{{ "%d:%02d"|format(song.duree // 60, song.duree % 60) }}</td>
+                            <td class="listens-cell">{{ song.ecoutes }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <div><span class="empty-icon">♫</span><strong>Aucun morceau trouvé</strong><br><span>Essaie un autre titre, artiste ou humeur.</span></div>
+            </div>
+            {% endif %}
+        </section>
+        <p class="footer-note">MusicVerse · écoute tes envies, organise ton monde.</p>
+    </main>
+
+    <script>
+        document.querySelectorAll('.favorite-button').forEach(button => {
+            button.addEventListener('click', async () => {
+                const songId = button.dataset.songId;
+                const wasFavorite = button.classList.contains('favorite');
+                const setFavorite = value => {
+                    button.classList.toggle('favorite', value);
+                    button.setAttribute('aria-pressed', String(value));
+                    button.setAttribute('aria-label', `${value ? 'Retirer' : 'Ajouter'} ${button.closest('tr').querySelector('.song-title').textContent} ${value ? 'des' : 'aux'} favoris`);
+                };
+                setFavorite(!wasFavorite);
+                try {
+                    const response = await fetch(`/library/toggle_favorite/${songId}`, { method: 'POST' });
+                    const result = await response.json();
+                    if (!response.ok || !result.success) throw new Error(result.error || 'La mise à jour a échoué.');
+                    setFavorite(result.is_favorite);
+                } catch (error) {
+                    setFavorite(wasFavorite);
+                    console.error(error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

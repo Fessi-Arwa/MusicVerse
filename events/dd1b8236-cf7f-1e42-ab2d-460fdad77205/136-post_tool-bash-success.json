@@ -1,0 +1,42 @@
+{
+  "seq": 136,
+  "received_at": "2026-11-23T14:29:23.840789+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "sg5YmFwWC",
+    "tool_input": {
+      "command": "ls -la musicverse/app/templates/ musicverse/app/static/css/ 2>&1"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "ls -la musicverse/app/templates/ musicverse/app/static/css/ 2>&1",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "musicverse/app/static/css/:",
+        "total 8",
+        "drwxr-xr-x 1 MSI 197121    0 Nov 23 15:06 .",
+        "drwxr-xr-x 1 MSI 197121    0 Nov 23 15:05 ..",
+        "-rw-r--r-- 1 MSI 197121 6471 Nov 23 15:06 library.css",
+        "",
+        "musicverse/app/templates/:",
+        "total 32",
+        "drwxr-xr-x 1 MSI 197121    0 Nov 23 15:28 .",
+        "drwxr-xr-x 1 MSI 197121    0 Nov 23 15:28 ..",
+        "-rw-r--r-- 1 MSI 197121 6907 Nov 23 15:06 library.html",
+        "-rw-r--r-- 1 MSI 197121 6212 Nov 23 15:28 playlist_detail.html",
+        "-rw-r--r-- 1 MSI 197121 4420 Nov 23 15:28 playlists.html",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

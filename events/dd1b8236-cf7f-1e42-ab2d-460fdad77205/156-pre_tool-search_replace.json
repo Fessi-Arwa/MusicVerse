@@ -1,0 +1,37 @@
+{
+  "seq": 156,
+  "received_at": "2026-11-23T14:32:07.400733+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "eGZXtCzHI",
+    "tool_input": {
+      "file_path": "musicverse/app/templates/playlists.html",
+      "old_string": [
+        "                        <select name=\"mood\" class=\"search-input\" required style=\"min-width: 200px;\">",
+        "                            <option value=\"\" disabled selected>Choisir une humeur</option>",
+        "                            <option value=\"Calme\">Calme</option>",
+        "                            <option value=\"Énergique\">Énergique</option>",
+        "                            <option value=\"Heureux\">Heureux</option>",
+        "                            <option value=\"Triste\">Triste</option>",
+        "                            <option value=\"Romantique\">Romantique</option>",
+        "                            <option value=\"Motivé\">Motivé</option>",
+        "                        </select>"
+      ],
+      "new_string": [
+        "                        <select name=\"mood\" class=\"search-input\" required style=\"min-width: 200px;\">",
+        "                            <option value=\"\" disabled selected>Choisir une humeur</option>",
+        "                            {% for mood in moods %}",
+        "                            <option value=\"{{ mood }}\">{{ mood }}</option>",
+        "                            {% endfor %}",
+        "                        </select>"
+      ],
+      "replace_all": false
+    }
+  }
+}

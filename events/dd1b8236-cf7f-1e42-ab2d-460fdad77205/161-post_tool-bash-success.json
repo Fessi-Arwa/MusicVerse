@@ -1,0 +1,30 @@
+{
+  "seq": 161,
+  "received_at": "2026-11-23T14:32:20.102128+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "TYw28vHUF",
+    "tool_input": {
+      "command": "cd /c/Users/MSI/MusicVerse && grep -n \"Playlists\" musicverse/app/templates/library.html"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "cd /c/Users/MSI/MusicVerse && grep -n \"Playlists\" musicverse/app/templates/library.html",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "15:                <a href=\"{{ url_for('playlists.list_playlists') }}\" class=\"nav-link\">Playlists</a>",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

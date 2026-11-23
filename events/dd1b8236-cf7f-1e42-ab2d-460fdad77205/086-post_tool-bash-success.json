@@ -1,0 +1,40 @@
+{
+  "seq": 86,
+  "received_at": "2026-11-23T14:16:40.174316+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "pjbe2aF3L",
+    "tool_input": {
+      "command": "find musicverse/app -type f -o -type d | sort"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "find musicverse/app -type f -o -type d | sort",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "musicverse/app",
+        "musicverse/app/__init__.py",
+        "musicverse/app/__pycache__",
+        "musicverse/app/__pycache__/__init__.cpython-310.pyc",
+        "musicverse/app/__pycache__/routes.cpython-310.pyc",
+        "musicverse/app/routes.py",
+        "musicverse/app/static",
+        "musicverse/app/static/css",
+        "musicverse/app/static/css/library.css",
+        "musicverse/app/templates",
+        "musicverse/app/templates/library.html",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

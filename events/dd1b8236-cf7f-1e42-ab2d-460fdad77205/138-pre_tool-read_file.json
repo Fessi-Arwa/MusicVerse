@@ -1,0 +1,19 @@
+{
+  "seq": 138,
+  "received_at": "2026-11-23T14:31:29.573393+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.read_file",
+    "tool_call_id": "vIKe1ZXKC",
+    "tool_input": {
+      "file_path": "musicverse/app/templates/library.html",
+      "offset": 0,
+      "limit": 25
+    }
+  }
+}

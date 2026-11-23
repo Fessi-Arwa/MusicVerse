@@ -1,0 +1,50 @@
+{
+  "seq": 90,
+  "received_at": "2026-11-23T14:25:15.267717+00:00",
+  "hook_event_name": "pre_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "pre_tool",
+    "tool_name": "file_system.search_replace",
+    "tool_call_id": "rWMrEyXxB",
+    "tool_input": {
+      "file_path": "musicverse/app/__init__.py",
+      "old_string": [
+        "from flask import Flask",
+        "from .routes import library_bp",
+        "",
+        "",
+        "def create_app():",
+        "    \"\"\"Factory function to create and configure the Flask app.\"\"\"",
+        "    app = Flask(__name__)",
+        "    ",
+        "    # Register blueprints",
+        "    app.register_blueprint(library_bp)",
+        "    ",
+        "    return app"
+      ],
+      "new_string": [
+        "from flask import Flask",
+        "from .routes import library_bp",
+        "from musicverse.core.database import init_db",
+        "",
+        "",
+        "def create_app():",
+        "    \"\"\"Factory function to create and configure the Flask app.\"\"\"",
+        "    app = Flask(__name__)",
+        "    ",
+        "    # Initialize the database",
+        "    init_db()",
+        "    ",
+        "    # Register blueprints",
+        "    app.register_blueprint(library_bp)",
+        "    ",
+        "    return app"
+      ],
+      "replace_all": false
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "seq": 50,
+  "received_at": "2026-11-23T14:07:01.200131+00:00",
+  "hook_event_name": "post_tool",
+  "event": {
+    "session_id": "dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "transcript_path": "C:\\Users\\MSI\\.vibe\\logs\\session\\unified\\dd1b8236-cf7f-1e42-ab2d-460fdad77205",
+    "cwd": "C:\\Users\\MSI\\MusicVerse",
+    "parent_session_id": null,
+    "hook_event_name": "post_tool",
+    "tool_name": "file_system.bash",
+    "tool_call_id": "i8po6K4QB",
+    "tool_input": {
+      "command": "find musicverse/app -type f | sort"
+    },
+    "tool_status": "success",
+    "tool_output": {
+      "command": "find musicverse/app -type f | sort",
+      "returncode": 0,
+      "stderr": "",
+      "stdout": [
+        "musicverse/app/__init__.py",
+        "musicverse/app/routes.py",
+        "musicverse/app/static/css/library.css",
+        "musicverse/app/templates/library.html",
+        ""
+      ],
+      "was_truncated": false
+    },
+    "tool_error": null,
+    "duration_ms": 0
+  }
+}

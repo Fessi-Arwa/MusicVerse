@@ -14,6 +14,8 @@ from .repository import (
     create_playlist,
     get_playlist_by_id,
     get_playlist_songs,
+    get_all_playlists,
+    get_unique_moods,
     add_song_to_playlist,
     update_song_ecoutes,
     get_songs_by_mood,
@@ -148,6 +150,16 @@ def simulate_listens(song_id: int, count: int = 1) -> None:
     if get_song_by_id(song_id) is None:
         raise ValueError(f"Song with ID {song_id} not found")
     update_song_ecoutes(song_id, count)
+
+
+def get_all_playlists_service() -> List[Playlist]:
+    """Get all playlists."""
+    return get_all_playlists()
+
+
+def get_unique_moods_service() -> List[str]:
+    """Get all unique moods from songs."""
+    return get_unique_moods()
 
 
 def get_statistics() -> dict:
