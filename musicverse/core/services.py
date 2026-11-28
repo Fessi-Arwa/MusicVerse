@@ -20,6 +20,9 @@ from .repository import (
     update_song_ecoutes,
     get_songs_by_mood,
     get_stats,
+    set_song_audio_file as repo_set_song_audio_file,
+    set_song_cover_file as repo_set_song_cover_file,
+    set_song_lyrics as repo_set_song_lyrics,
 )
 
 
@@ -172,3 +175,26 @@ def get_statistics() -> dict:
         - most_listened: Most listened song (titre, artiste, écoutes)
     """
     return get_stats()
+
+
+def attach_song_audio(song_id: int, audio_file: str) -> None:
+    """Attach a stored audio filename to an existing song."""
+    if get_song_by_id(song_id) is None:
+        raise ValueError(f"Song with ID {song_id} not found")
+    repo_set_song_audio_file(song_id, audio_file)
+
+
+def attach_song_cover(song_id: int, cover_file: str) -> None:
+    """Attach a locally stored cover image to an existing song."""
+    if get_song_by_id(song_id) is None:
+        raise ValueError(f"Song with ID {song_id} not found")
+    repo_set_song_cover_file(song_id, cover_file)
+
+
+def save_song_lyrics(song_id: int, lyrics: str) -> None:
+    """Save user-provided lyrics for an existing song."""
+    if get_song_by_id(song_id) is None:
+        raise ValueError(f"Song with ID {song_id} not found")
+    if len(lyrics) > 20000:
+        raise ValueError("Les paroles ne peuvent pas dépasser 20 000 caractères.")
+    repo_set_song_lyrics(song_id, lyrics)

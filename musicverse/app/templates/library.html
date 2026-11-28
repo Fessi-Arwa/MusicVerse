@@ -61,6 +61,11 @@
         <p class="section-subtitle" style="margin: 0 0 14px;">Résultats pour « {{ query }} »</p>
         {% endif %}
 
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+        <p class="flash-message {{ category }}" role="status">{{ message }}</p>
+        {% endfor %}
+        <p class="audio-hint">Clique sur « Choisir l’audio » pour associer ton fichier. Le bouton « Écouter » apparaîtra ensuite pour lancer la chanson.</p>
+
         <section class="surface-card" aria-label="Chansons de la bibliothèque">
             {% if songs %}
             <div class="table-scroll">
@@ -74,6 +79,7 @@
                             <th>Genre</th>
                             <th>Humeur</th>
                             <th>Durée</th>
+                            <th>Audio</th>
                             <th class="listens-cell">Écoutes</th>
                         </tr>
                     </thead>
@@ -91,6 +97,7 @@
                             <td><span class="mood-chip">{{ song.genre }}</span></td>
                             <td><span class="mood-chip">{{ song.humeur }}</span></td>
                             <td class="duration-cell">{{ "%d:%02d"|format(song.duree // 60, song.duree % 60) }}</td>
+                            {% include "_song_audio_cell.html" %}
                             <td class="listens-cell">{{ song.ecoutes }}</td>
                         </tr>
                         {% endfor %}
@@ -129,5 +136,7 @@
             });
         });
     </script>
+    {% include "_audio_dock.html" %}
+    <script src="{{ url_for('library.static', filename='js/player.js') }}" defer></script>
 </body>
 </html>

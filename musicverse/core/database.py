@@ -55,7 +55,10 @@ def init_db():
                 humeur TEXT NOT NULL,
                 is_favorite BOOLEAN DEFAULT FALSE,
                 ecoutes INTEGER DEFAULT 0,
-                derniere_ecoute TEXT
+                derniere_ecoute TEXT,
+                audio_file TEXT,
+                cover_file TEXT,
+                lyrics TEXT DEFAULT ''
             )
         """)
         
@@ -76,6 +79,15 @@ def init_db():
                 FOREIGN KEY (song_id) REFERENCES songs(id) ON DELETE CASCADE
             )
         """)
+
+        # Add optional local media fields to databases created by older versions.
+        song_columns = {row["name"] for row in cursor.execute("PRAGMA table_info(songs)")}
+        if "audio_file" not in song_columns:
+            cursor.execute("ALTER TABLE songs ADD COLUMN audio_file TEXT")
+        if "cover_file" not in song_columns:
+            cursor.execute("ALTER TABLE songs ADD COLUMN cover_file TEXT")
+        if "lyrics" not in song_columns:
+            cursor.execute("ALTER TABLE songs ADD COLUMN lyrics TEXT DEFAULT ''")
         
         conn.commit()
         

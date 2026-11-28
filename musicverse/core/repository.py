@@ -26,7 +26,10 @@ def get_all_songs() -> List[Song]:
                 humeur=row["humeur"],
                 is_favorite=bool(row["is_favorite"]),
                 ecoutes=row["ecoutes"],
-                derniere_ecoute=row["derniere_ecoute"]
+                derniere_ecoute=row["derniere_ecoute"],
+                audio_file=row["audio_file"],
+                cover_file=row["cover_file"],
+                lyrics=row["lyrics"] or ""
             )
             for row in rows
         ]
@@ -50,7 +53,10 @@ def get_song_by_id(song_id: int) -> Optional[Song]:
                 humeur=row["humeur"],
                 is_favorite=bool(row["is_favorite"]),
                 ecoutes=row["ecoutes"],
-                derniere_ecoute=row["derniere_ecoute"]
+                derniere_ecoute=row["derniere_ecoute"],
+                audio_file=row["audio_file"],
+                cover_file=row["cover_file"],
+                lyrics=row["lyrics"] or ""
             )
         return None
 
@@ -78,7 +84,10 @@ def search_songs(query: str, limit: Optional[int] = None) -> List[Song]:
                 humeur=row["humeur"],
                 is_favorite=bool(row["is_favorite"]),
                 ecoutes=row["ecoutes"],
-                derniere_ecoute=row["derniere_ecoute"]
+                derniere_ecoute=row["derniere_ecoute"],
+                audio_file=row["audio_file"],
+                cover_file=row["cover_file"],
+                lyrics=row["lyrics"] or ""
             )
             for row in rows
         ]
@@ -105,7 +114,10 @@ def get_favorite_songs() -> List[Song]:
                 humeur=row["humeur"],
                 is_favorite=True,
                 ecoutes=row["ecoutes"],
-                derniere_ecoute=row["derniere_ecoute"]
+                derniere_ecoute=row["derniere_ecoute"],
+                audio_file=row["audio_file"],
+                cover_file=row["cover_file"],
+                lyrics=row["lyrics"] or ""
             )
             for row in rows
         ]
@@ -194,7 +206,10 @@ def get_playlist_songs(playlist_id: int) -> List[Song]:
                 humeur=row["humeur"],
                 is_favorite=bool(row["is_favorite"]),
                 ecoutes=row["ecoutes"],
-                derniere_ecoute=row["derniere_ecoute"]
+                derniere_ecoute=row["derniere_ecoute"],
+                audio_file=row["audio_file"],
+                cover_file=row["cover_file"],
+                lyrics=row["lyrics"] or ""
             )
             for row in rows
         ]
@@ -254,6 +269,36 @@ def update_song_ecoutes(song_id: int, count: int) -> None:
         conn.commit()
 
 
+def set_song_audio_file(song_id: int, audio_file: str) -> None:
+    """Associate a locally uploaded audio file with a song."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("UPDATE songs SET audio_file = ? WHERE id = ?", (audio_file, song_id))
+        if cursor.rowcount == 0:
+            raise ValueError(f"Song with ID {song_id} not found")
+        conn.commit()
+
+
+def set_song_cover_file(song_id: int, cover_file: str) -> None:
+    """Associate a locally uploaded cover image with a song."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("UPDATE songs SET cover_file = ? WHERE id = ?", (cover_file, song_id))
+        if cursor.rowcount == 0:
+            raise ValueError(f"Song with ID {song_id} not found")
+        conn.commit()
+
+
+def set_song_lyrics(song_id: int, lyrics: str) -> None:
+    """Save user-provided lyrics for a song."""
+    with get_db_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("UPDATE songs SET lyrics = ? WHERE id = ?", (lyrics, song_id))
+        if cursor.rowcount == 0:
+            raise ValueError(f"Song with ID {song_id} not found")
+        conn.commit()
+
+
 def get_songs_by_mood(mood: str) -> List[Song]:
     """Get all songs with a specific humeur."""
     with get_db_connection() as conn:
@@ -272,7 +317,10 @@ def get_songs_by_mood(mood: str) -> List[Song]:
                 humeur=row["humeur"],
                 is_favorite=bool(row["is_favorite"]),
                 ecoutes=row["ecoutes"],
-                derniere_ecoute=row["derniere_ecoute"]
+                derniere_ecoute=row["derniere_ecoute"],
+                audio_file=row["audio_file"],
+                cover_file=row["cover_file"],
+                lyrics=row["lyrics"] or ""
             )
             for row in rows
         ]

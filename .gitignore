@@ -1,5 +1,6 @@
 .DS_Store
 musicverse.db
+/musicverse_audio/
 
 # Python
 __pycache__/

@@ -18,15 +18,18 @@ Créer une application non triviale avec :
 - **Playlists** : créer, modifier, supprimer des playlists et gérer leurs chansons (ajout/suppression par ID).
 - **Statistiques** : compteur d’`écoutes` (entier) et `dernière_écoute` (date). Les **valeurs sont fixes et reproductibles** (pas de génération aléatoire au lancement) et modifiables uniquement via `simulate-listens`.
 - **Suggestions** : trouver des titres similaires (même `genre` **ou** même `humeur`).
+- **Lecture audio locale** : associer à une chanson un fichier audio autorisé (MP3, WAV, OGG, OPUS, M4A, AAC, FLAC ou WEBM) et le lire dans le navigateur.
+- **Panneau d’écoute** : afficher le lecteur, une pochette ajoutée localement et les paroles saisies par l’utilisateur dans un panneau latéral.
 
 ### 🖥️ Interface
-- **GUI** : interface graphique légère pour naviguer dans la bibliothèque et les playlists.
+- **GUI** : interface graphique légère pour naviguer dans la bibliothèque et les playlists, avec un lecteur audio pour les fichiers ajoutés par l’utilisateur.
 - **CLI** : interface en ligne de commande avec **sorties JSON**, partageant la même logique et les mêmes données que la GUI.
 
 ### ❌ Hors périmètre
-- Lecture audio.
 - Intégration avec des services de streaming (Spotify, Deezer, etc.).
 - Journal musical.
+
+Les chansons de démonstration ne contiennent pas les enregistrements commerciaux, pochettes ni paroles. Pour écouter un titre, utilisez « Choisir l’audio » dans la bibliothèque ou dans une playlist et sélectionnez un fichier que vous avez le droit d’utiliser. Le panneau permet aussi d’ajouter une pochette et de saisir les paroles. Les fichiers sont conservés localement dans `musicverse_audio/` et exclus de Git.
 
 ## Utilisation par un agent IA
 

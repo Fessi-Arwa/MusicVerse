@@ -1,0 +1,23 @@
+<td class="audio-cell">
+    {% if song.audio_file %}
+    <button type="button" class="play-track-button" data-song-id="{{ song.id }}" data-audio-url="{{ url_for('library.serve_song_audio', song_id=song.id) }}" data-cover-url="{{ url_for('library.serve_song_cover', song_id=song.id) if song.cover_file else '' }}" data-lyrics-url="{{ url_for('library.update_song_lyrics', song_id=song.id) }}" data-cover-upload-url="{{ url_for('library.upload_song_cover', song_id=song.id) }}" data-title="{{ song.titre }}" data-artist="{{ song.artiste }}" data-album="{{ song.album or '' }}" data-lyrics="{{ song.lyrics or '' }}" aria-label="Écouter {{ song.titre }} de {{ song.artiste }}">
+        <span aria-hidden="true">▶</span> Écouter
+    </button>
+    <form class="audio-upload-form" action="{{ url_for('library.upload_song_audio', song_id=song.id) }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="return_to" value="{{ request.full_path if request.query_string else request.path }}">
+        <label class="audio-upload-button" title="{{ 'Remplacer le fichier audio' if song.audio_file else 'Associer un fichier audio' }}">
+            <span aria-hidden="true">↻</span>
+            <span>Remplacer</span>
+            <input class="audio-file-input" type="file" name="audio_file" accept=".mp3,.wav,.ogg,.oga,.opus,.m4a,.aac,.flac,.webm,audio/mpeg,audio/wav,audio/ogg,audio/mp4,audio/aac,audio/flac,audio/webm" required>
+        </label>
+    </form>
+    {% else %}
+    <form class="audio-upload-form" action="{{ url_for('library.upload_song_audio', song_id=song.id) }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="return_to" value="{{ request.full_path if request.query_string else request.path }}">
+        <label class="play-track-button audio-choose-button" title="Choisir le fichier audio de cette chanson">
+            <span aria-hidden="true">▶</span> Choisir l’audio
+            <input class="audio-file-input" type="file" name="audio_file" accept=".mp3,.wav,.ogg,.oga,.opus,.m4a,.aac,.flac,.webm,audio/mpeg,audio/wav,audio/ogg,audio/mp4,audio/aac,audio/flac,audio/webm" required>
+        </label>
+    </form>
+    {% endif %}
+</td>

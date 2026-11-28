@@ -1,0 +1,59 @@
+<div class="player-overlay" id="player-overlay" hidden>
+    <aside class="player-panel" id="audio-dock" role="dialog" aria-modal="true" aria-labelledby="player-title" tabindex="-1">
+        <div class="player-panel-header">
+            <div>
+                <p class="eyebrow"><span class="eyebrow-dot"></span> En lecture</p>
+                <p class="player-panel-label">Ton MusicVerse</p>
+            </div>
+            <button class="player-close" id="player-close" type="button" aria-label="Fermer le lecteur">×</button>
+        </div>
+
+        <div class="player-cover-wrap">
+            <img class="player-cover" id="player-cover" alt="Pochette de l’album" hidden>
+            <div class="player-cover-placeholder" id="player-cover-placeholder" aria-hidden="true">
+                <span class="cover-note">♫</span>
+                <span id="cover-placeholder-album">MusicVerse</span>
+            </div>
+        </div>
+
+        <div class="player-song-details">
+            <div class="player-song-copy">
+                <h2 id="player-title">Aucun morceau sélectionné</h2>
+                <p id="player-artist"></p>
+                <span id="player-album"></span>
+            </div>
+            <form class="cover-upload-form" id="cover-upload-form" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="return_to" value="{{ request.full_path if request.query_string else request.path }}">
+                <label class="cover-upload-button" title="Ajouter ou remplacer la pochette">
+                    <span aria-hidden="true">▧</span> Pochette
+                    <input id="cover-file-input" type="file" name="cover_file" accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif" required>
+                </label>
+            </form>
+        </div>
+
+        <audio id="music-player" controls preload="none">
+            Votre navigateur ne prend pas en charge la lecture audio.
+        </audio>
+
+        <section class="lyrics-section" aria-labelledby="lyrics-heading">
+            <div class="lyrics-heading-row">
+                <div>
+                    <p class="eyebrow">À suivre</p>
+                    <h3 id="lyrics-heading">Paroles</h3>
+                </div>
+                <button class="lyrics-edit-toggle" id="lyrics-edit-toggle" type="button">Modifier</button>
+            </div>
+            <p class="lyrics-empty" id="lyrics-empty">Les paroles ne sont pas ajoutées pour ce morceau.</p>
+            <pre class="lyrics-display" id="lyrics-display" hidden></pre>
+            <form class="lyrics-form" id="lyrics-form" method="post" hidden>
+                <label for="lyrics-input">Colle ou saisis les paroles que tu peux utiliser</label>
+                <textarea id="lyrics-input" name="lyrics" rows="9" maxlength="20000" placeholder="Les paroles de la chanson…"></textarea>
+                <div class="lyrics-form-actions">
+                    <span class="lyrics-status" id="lyrics-status" aria-live="polite"></span>
+                    <button class="primary-button" type="submit">Enregistrer</button>
+                </div>
+            </form>
+        </section>
+        <p class="player-credit">Pochettes et paroles ajoutées depuis tes fichiers ou par toi.</p>
+    </aside>
+</div>

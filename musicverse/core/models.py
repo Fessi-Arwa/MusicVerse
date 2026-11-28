@@ -18,6 +18,9 @@ class Song:
     is_favorite: bool = False
     ecoutes: int = 0
     derniere_ecoute: Optional[date] = None
+    audio_file: Optional[str] = None
+    cover_file: Optional[str] = None
+    lyrics: str = ""
 
 
 @dataclass

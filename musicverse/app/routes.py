@@ -3,9 +3,20 @@
 Provides the Bibliothèque page with song listing, search, and favorite toggling.
 Provides the Playlists page with playlist listing, creation, and details.
 """
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify, abort
+import os
+from pathlib import Path
+from urllib.parse import urlsplit
+
+from flask import (
+    Blueprint, abort, flash, jsonify, redirect, render_template, request,
+    send_from_directory, url_for,
+)
+from ..core.database import REPO_ROOT
 from ..core.services import (
+    attach_song_cover,
+    attach_song_audio,
     get_all_songs_service,
+    get_song_by_id,
     search_songs,
     toggle_favorite,
     get_all_playlists_service,
@@ -13,7 +24,17 @@ from ..core.services import (
     get_playlist_by_id,
     get_playlist_songs,
     get_unique_moods_service,
+    save_song_lyrics,
 )
+
+AUDIO_UPLOAD_DIR = os.path.join(REPO_ROOT, "musicverse_audio")
+ALLOWED_AUDIO_EXTENSIONS = {".mp3", ".wav", ".ogg", ".oga", ".opus", ".m4a", ".aac", ".flac", ".webm"}
+AUDIO_MIME_TYPES = {
+    ".mp3": "audio/mpeg", ".wav": "audio/wav", ".ogg": "audio/ogg",
+    ".oga": "audio/ogg", ".opus": "audio/ogg", ".m4a": "audio/mp4",
+    ".aac": "audio/aac", ".flac": "audio/flac", ".webm": "audio/webm",
+}
+ALLOWED_COVER_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
 
 # Create the Bibliothèque blueprint
 library_bp = Blueprint('library', __name__, url_prefix='/library',
@@ -64,6 +85,120 @@ def toggle_favorite_route(song_id):
             'success': False,
             'error': 'An error occurred while toggling favorite'
         }), 500
+
+
+@library_bp.route('/upload-audio/<int:song_id>', methods=['POST'])
+def upload_song_audio(song_id):
+    """Store a user's audio file locally and associate it with a song."""
+    song = get_song_by_id(song_id)
+    if song is None:
+        abort(404)
+
+    uploaded_file = request.files.get('audio_file')
+    extension = Path(uploaded_file.filename or '').suffix.lower() if uploaded_file else ''
+    if uploaded_file is None or not uploaded_file.filename:
+        flash("Choisis d’abord un fichier audio.", "error")
+        return _safe_audio_return()
+    if extension not in ALLOWED_AUDIO_EXTENSIONS:
+        flash("Format audio accepté : MP3, WAV, OGG, OPUS, M4A, AAC, FLAC ou WEBM.", "error")
+        return _safe_audio_return()
+
+    os.makedirs(AUDIO_UPLOAD_DIR, exist_ok=True)
+    audio_filename = f"{song_id}{extension}"
+    target_path = os.path.join(AUDIO_UPLOAD_DIR, audio_filename)
+    uploaded_file.save(target_path)
+    attach_song_audio(song_id, audio_filename)
+
+    if song.audio_file and song.audio_file != audio_filename:
+        previous_path = os.path.join(AUDIO_UPLOAD_DIR, os.path.basename(song.audio_file))
+        if os.path.isfile(previous_path):
+            os.remove(previous_path)
+
+    flash(f"Audio associé à « {song.titre} ». Tu peux maintenant le lancer.", "success")
+    return _safe_audio_return()
+
+
+@library_bp.route('/audio/<int:song_id>')
+def serve_song_audio(song_id):
+    """Stream an audio file previously uploaded for a song."""
+    song = get_song_by_id(song_id)
+    if song is None or not song.audio_file:
+        abort(404)
+    extension = Path(song.audio_file).suffix.lower()
+    return send_from_directory(
+        AUDIO_UPLOAD_DIR,
+        os.path.basename(song.audio_file),
+        mimetype=AUDIO_MIME_TYPES.get(extension, "application/octet-stream"),
+        conditional=True,
+    )
+
+
+@library_bp.route('/upload-cover/<int:song_id>', methods=['POST'])
+def upload_song_cover(song_id):
+    """Store a user's album cover image locally."""
+    song = get_song_by_id(song_id)
+    if song is None:
+        abort(404)
+
+    uploaded_file = request.files.get('cover_file')
+    extension = Path(uploaded_file.filename or '').suffix.lower() if uploaded_file else ''
+    if uploaded_file is None or not uploaded_file.filename:
+        flash("Choisis une image de pochette.", "error")
+        return _safe_audio_return()
+    if extension not in ALLOWED_COVER_EXTENSIONS:
+        flash("Format de pochette accepté : JPG, PNG, WEBP ou GIF.", "error")
+        return _safe_audio_return()
+
+    os.makedirs(AUDIO_UPLOAD_DIR, exist_ok=True)
+    cover_filename = f"cover-{song_id}{extension}"
+    uploaded_file.save(os.path.join(AUDIO_UPLOAD_DIR, cover_filename))
+    attach_song_cover(song_id, cover_filename)
+
+    if song.cover_file and song.cover_file != cover_filename:
+        previous_path = os.path.join(AUDIO_UPLOAD_DIR, os.path.basename(song.cover_file))
+        if os.path.isfile(previous_path):
+            os.remove(previous_path)
+
+    flash(f"Pochette ajoutée à « {song.titre} ».", "success")
+    return _safe_audio_return()
+
+
+@library_bp.route('/cover/<int:song_id>')
+def serve_song_cover(song_id):
+    """Serve a cover image previously uploaded for a song."""
+    song = get_song_by_id(song_id)
+    if song is None or not song.cover_file:
+        abort(404)
+    extension = Path(song.cover_file).suffix.lower()
+    mime_type = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp", ".gif": "image/gif"}.get(extension)
+    return send_from_directory(
+        AUDIO_UPLOAD_DIR,
+        os.path.basename(song.cover_file),
+        mimetype=mime_type,
+        conditional=True,
+    )
+
+
+@library_bp.route('/lyrics/<int:song_id>', methods=['POST'])
+def update_song_lyrics(song_id):
+    """Save lyrics supplied by the user for a song."""
+    if get_song_by_id(song_id) is None:
+        abort(404)
+    lyrics = request.form.get('lyrics', '')
+    try:
+        save_song_lyrics(song_id, lyrics)
+    except ValueError as error:
+        return jsonify({"success": False, "error": str(error)}), 400
+    return jsonify({"success": True})
+
+
+def _safe_audio_return():
+    """Redirect to an internal library or playlist page after an upload."""
+    destination = request.form.get('return_to', '')
+    parsed = urlsplit(destination)
+    if parsed.scheme or parsed.netloc or not parsed.path.startswith(('/library/', '/playlists/')):
+        destination = url_for('library.library')
+    return redirect(destination)
 
 
 # Create the Playlists blueprint
